@@ -61,10 +61,23 @@ header a{
 }
 */
 
-.subtitle {
+.button-middle {
     font-size: larger;
     color: white;
     text-align: center;
+}
+
+.button {
+    background-color: transparent;
+    padding: 10px;
+    border: 2px solid white;
+    color: white;
+    border-radius: 10px;
+}
+
+.button:hover {
+    background-color: white;
+    color: green;
 }
 
 .logo {
@@ -141,7 +154,7 @@ footer {
 main {
     position: absolute;
     top: 45%;
-    left: 45%;
+    left: 35%;
     width: auto;
     text-align: center;
     justify-content: center;

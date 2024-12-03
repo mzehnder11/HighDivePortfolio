@@ -41,30 +41,39 @@
                             const overlay = document.createElement('div');
                             overlay.className = 'fullscreen-overlay';
             
+                            // Container für das Video erstellen
+                            const videoContainer = document.createElement('div');
+                            videoContainer.className = 'video-container';
+            
                             // Erstelle das Video im Vollbildmodus
                             const fullscreenVideo = document.createElement('video');
                             fullscreenVideo.src = video.src;
-                            fullscreenVideo.controls = true; // Optional: Steuerelemente für das Video
-                            fullscreenVideo.autoplay = true; // Optional: Video automatisch abspielen
-                            fullscreenVideo.muted = video.muted; // Behalte die Stummschaltung bei
-                            fullscreenVideo.loop = video.loop; // Behalte die Schleifen-Wiedergabe bei
-                            fullscreenVideo.style.width = '100%'; // Video auf 100% der Overlay-Breite setzen
-                            fullscreenVideo.style.height = '100%'; // Video auf 100% der Overlay-Höhe setzen
-                            fullscreenVideo.style.objectFit = 'contain'; // Video vollständig anzeigen
-            
-                            overlay.appendChild(fullscreenVideo);
+                            fullscreenVideo.controls = true;
+                            fullscreenVideo.autoplay = true;
+                            fullscreenVideo.muted = video.muted;
+                            fullscreenVideo.loop = video.loop;
+                            fullscreenVideo.style.width = '100%';
+                            fullscreenVideo.style.height = '100%';
+                            fullscreenVideo.style.borderRadius = '15px'
+                            fullscreenVideo.style.objectFit = 'contain';
+                            
+                            videoContainer.appendChild(fullscreenVideo);
+                            overlay.appendChild(videoContainer);
             
                             // Füge das Overlay zur Seite hinzu
                             document.body.appendChild(overlay);
             
-                            // Schließe das Overlay, wenn auf das Video geklickt wird
-                            fullscreenVideo.addEventListener('click', () => {
-                                document.body.removeChild(overlay);
+                            // Event-Listener für das Overlay
+                            overlay.addEventListener('click', (event) => {
+                                // Wenn der Klick auf dem Overlay aber nicht im Video-Container ist
+                                if (!videoContainer.contains(event.target)) {
+                                    document.body.removeChild(overlay);
+                                }
                             });
             
-                            // Schließe das Overlay, wenn außerhalb des Videos geklickt wird
-                            overlay.addEventListener('click', () => {
-                                document.body.removeChild(overlay);
+                            // Verhindere, dass Klicks auf dem Video das Overlay schließen
+                            videoContainer.addEventListener('click', (event) => {
+                                event.stopPropagation();
                             });
                         }
                     });

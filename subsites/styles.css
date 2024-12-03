@@ -126,7 +126,7 @@ footer {
     height: 100%;
     flex: 1 1 calc(33.333% - 10px);
     overflow: hidden;
-    border-radius: 10px;
+    border-radius: 15px;
     background-color: transparent;
     transition: transform 0.3s;
     }
@@ -207,7 +207,12 @@ footer {
 }
 
 
-
+.main-contact {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
 
 .div-contact {
     text-align: center;
